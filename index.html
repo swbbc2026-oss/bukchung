@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>청년부 조직도</title>
     <style>
         * {
@@ -106,15 +109,15 @@
                 list: [
                     {
                         name: "예배팀",
-                        members: ["회장", "찬양팀장", "멀티팀장"]
+                        members: ["회장", "최경원 리더"]
                     },
                     {
                         name: "목양팀",
-                        members: ["부회장", "박예인", "오선택"]
+                        members: ["부회장", "박예인 팀장", "오선택 팀장"]
                     },
                     {
                         name: "새가족팀",
-                        members: ["총무", "새가족팀장"]
+                        members: ["총무", "새가족 팀장"]
                     },
                     {
                         name: "사진팀",
@@ -166,6 +169,11 @@
         }
 
         renderOrgChart();
+
+        // 1분마다 자동 새로고침
+        setInterval(() => {
+            location.reload(true);
+        }, 60000); // 10분 = 600,000ms
     </script>
 </body>
 </html>
