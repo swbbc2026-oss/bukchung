@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청년부 조직도</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+            background: #1a1a1a;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .level {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        
+        .level-title {
+            color: #999;
+            font-size: 14px;
+            margin-bottom: 20px;
+            padding: 8px 20px;
+            border: 2px dashed #666;
+            border-radius: 20px;
+        }
+        
+        .box {
+            padding: 20px 30px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            font-weight: 500;
+            line-height: 1.6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            white-space: pre-line;
+        }
+        
+        .pastor {
+            background: #c0392b;
+            font-size: 18px;
+        }
+        
+        .executive {
+            background: #2980b9;
+            font-size: 16px;
+        }
+        
+        .team {
+            background: #1abc9c;
+            font-size: 14px;
+            min-width: 140px;
+        }
+        
+        .teams-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 100%;
+        }
+        
+        @media (max-width: 768px) {
+            .teams-container {
+                gap: 15px;
+            }
+            
+            .team {
+                min-width: 120px;
+                font-size: 13px;
+                padding: 15px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="orgChart"></div>
+
+    <script>
+        // ===== 여기만 수정하세요! =====
+        const orgData = {
+            pastor: {
+                title: "교역자",
+                name: "청년부 목사"
+            },
+            executive: {
+                title: "임원단",
+                content: "임원단\n청년부 회장"
+            },
+            teams: {
+                title: "사역팀",
+                list: [
+                    {
+                        name: "예배팀",
+                        members: ["회장", "찬양팀장", "멀티팀장"]
+                    },
+                    {
+                        name: "목양팀",
+                        members: ["부회장", "박예인", "오선택"]
+                    },
+                    {
+                        name: "새가족팀",
+                        members: ["총무", "새가족팀장"]
+                    },
+                    {
+                        name: "사진팀",
+                        members: ["사진담당자"]
+                    },
+                    {
+                        name: "SNS팀",
+                        members: ["김영민 팀장"]
+                    },
+                    {
+                        name: "환영팀",
+                        members: ["담당자"]
+                    }
+                ]
+            }
+        };
+        // ===== 수정 끝 =====
+
+        // 조직도 렌더링
+        function renderOrgChart() {
+            const container = document.getElementById('orgChart');
+            
+            // 교역자
+            container.innerHTML += `
+                <div class="level">
+                    <div class="level-title">${orgData.pastor.title}</div>
+                    <div class="box pastor">${orgData.pastor.name}</div>
+                </div>
+            `;
+            
+            // 임원단
+            container.innerHTML += `
+                <div class="level">
+                    <div class="level-title">${orgData.executive.title}</div>
+                    <div class="box executive">${orgData.executive.content}</div>
+                </div>
+            `;
+            
+            // 사역팀
+            let teamsHTML = '<div class="level"><div class="level-title">' + orgData.teams.title + '</div><div class="teams-container">';
+            
+            orgData.teams.list.forEach(team => {
+                const membersList = team.members.join('\n');
+                teamsHTML += `<div class="box team">${team.name}\n${membersList}</div>`;
+            });
+            
+            teamsHTML += '</div></div>';
+            container.innerHTML += teamsHTML;
+        }
+
+        renderOrgChart();
+    </script>
+</body>
+</html>
